@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+
+<center>
+
+
+<div style="width:850px;">
+
+	<h2>Step 6: Putting it all together</h2>
+	
+	<div class="api-response">
+	<div class="apiusage">Setting up a default sort and limit on grid load</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+			baseParams: {
+				sort: 'last_name',
+				dir : 'asc', // or 'desc'
+				limit: 10
+	        }
+    </pre>
+    </div>
+    </div>    
+    
+	<h4>Explanation</h4>
+	<p>
+	<b>baseParams:</b><br/>
+	This optional grid config parameter sets the defaults to send to the url action when loading the initial grid.  If a <b>sort</b> param is passed and a column's dataIndex matches that column will be selected as sorted.<br/><br/>
+	<u>sort</u>: Sends the default sort by column (should match a column's dataIndex).<br/>
+	<u>dir:</u> Direction the default sort should return data by.  asc or desc, defaults to asc. <br/>
+	<u>limit:</u> The number of records to display (and return).  Defaults to 5.
+	</p>   
+	<br/>
+	<h4>Table Bindings</h4>
+	<div class="api-response">
+	<div class="apiusage">Binding to events</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+		$(example.finalgrid).bind({	
+			"load" : function(event,data) {
+			    var paging = "Displaying customers "+(data.paging.start + 1)+" - "+(data.paging.start + data.paging.items)+" of "+data.paging.totalItems;		    
+				$('#tablemetadata').html(paging);
+		    },
+		    "rowselect": function(event,data) {
+				alert('selected id:'+data.rowid);
+		    },
+	        "drop": function (event, data) {
+				alert('new order:'+example.finalgrid.getRowValues('customer_id'))        
+	        }
+	    }); 
+	    
+    </pre>
+    </div>
+    </div>   
+	
+    
+    <h4>Output</h4>
+    <div id="tablemetadata"></div>
+	<div id="example-customer-grid"></div>   
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();
+	    example.finalgrid.render();		
+	});
+	</script>
+	
+	<div class="buttons">
+		<a class="previous button" href="step5.html">&lt;&lt; 6. Load some data</a>
+	</div>	
+
+
+</div>
+</center>
+
+
+</body>
+</html>

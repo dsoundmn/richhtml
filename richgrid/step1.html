@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+
+<center>
+
+
+<div style="width:850px;">
+<h2>Step 1: Let's load the required JS/CSS files and container element</h2>
+
+<h4>Richgrid makes use of both <a href="http://jquery.com/" target="_blank">jquery</a> and <a href="http://mustache.github.com/" target="_blank">mustache</a> libraries.  You will need to include both.</h4>
+	<div class="api-response">
+		<div class="apiusage">Include the required JS files</div>
+		<div class="apiresponse">
+		<pre class="brush: js">
+			&lt;script type="text/javascript" src="{path}/jquery-1.7.2.min.js"&gt;&lt;/script&gt;
+			&lt;script type="text/javascript" src="{path}/mustache.js"&gt;&lt;/script&gt;
+    	</pre>
+    	</div>
+    </div>   
+
+	<div class="api-response">
+		<div class="apiusage">Include the richgrid JS and CSS files</div>
+		<div class="apiresponse">
+		<pre class="brush: js">
+			&lt;script type="text/javascript" src="richhtml/rich.all-min.js"&gt;&lt;/script&gt;
+			&lt;link rel="stylesheet" type="text/css" href="richhtml/css/rich.grid.css" /&gt;			
+    	</pre>
+    	</div>
+    </div>
+
+	<h4>The div should be placed after the &lt;body> and before the &lt;/body> tag</h4>
+	
+	<div class="api-response">
+	<div class="apiusage">Add div container that will hold the richgrid content</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+	    &lt;div id="tablemetadata">&lt;/div>
+		&lt;div id="example-customer-grid">&lt;/div>	
+    </pre>
+    </div>
+    </div>   
+    
+    <p>
+    <b>Note:</b> The div tablemetada is optional and only used in the final example to demonstrate showing table paging information.
+	</p>
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();		
+	});
+	</script>
+	
+
+	<div class="buttons">
+		<a class="previous button" href="demo.html">&lt;&lt; Demo </a>	
+		<a class="next button" href="step2.html">2. Create the JS object >> </a>
+	</div>	
+
+</div>
+
+</center>
+
+
+
+</body>
+</html>

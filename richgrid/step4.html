@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+
+<body>
+
+<center>
+
+<div style="width:850px;">
+	
+	<h2>Step 4: Column options</h2>	
+	
+	<div class="api-response">
+	<div class="apiusage">Pretty up our data columns and add some helper columns</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+			columns: [{
+				text: "",
+				dataIndex: "address",
+				xtype: "expander"
+			},{          
+                text:     	"",            
+                xtype:      "drag"            
+            },{
+	            text:       "",
+	            dataIndex:  "customer_id",            
+	            xtype:      "checkbox"           
+	        },{
+	            id:			'customer_id', 
+	            dataIndex:	"customer_id",
+	            hidden:		true
+	        },{
+				text:     	"First Name",
+                dataIndex:  "first_name",
+                align: 		"left",
+                sortable:   true                                  
+			},{
+				text:     	"Last Name",
+                dataIndex:  "last_name",
+                align: 		"left",
+                sortable:   true                                                  
+			},{
+				text: 		"Created On",
+				dataIndex:	"create_date",
+                align: 		"center",
+                width: 		"180",
+                sortable:   true                                                  				
+			}]
+    </pre>
+    </div>
+    </div>   
+    
+	<h4>Explanation</h4>
+	<p>
+	<b>xtype:</b><br/>
+	Optional for string variables.  The available options are for helper columns.<br/>
+	<u>checkbox</u>: Row select option with dataIndex of the id that identifies your row.<br/>
+	<u>drag:</u> Adds column with draggable icon to allow row reordering. No dataIndex necessary. <br/>
+	<u>expander:</u> Creates a hidden row with additional information (more on this later). dataIndex optional but if you pass it should be the id of the data you want to populate the hidden expander row with.
+	<br/><br/>
+	<b>align:</b> center, left, right - aligns both the column header text and cell values.
+	<br/>
+	<b>width:</b> Column width, when not included 100% is used.
+	<br/>
+	<b>sortable:</b> Adds the column reorder icons. Once the column is clicked the grid is reordered sending to the url action with new fields of sort and dir.  Sort will contain the dataIndex name identified in the column description and dir will either be <b>asc</b> or <b>desc</b>.
+	<br/>
+	<b>hidden:</b> defaults to false.  When set to true the data will be available for other uses.  One example would be to store an id that you want to obtain after sorting columns.
+	</p>   
+	
+    <h4>Output</h4>
+	<div id="example-customer-grid"></div>    	
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();
+	    example.grid4.render();		
+	});
+	</script>
+	
+	<div class="buttons">
+		<a class="previous button" href="step3.html">&lt;&lt; 3. Load some data</a>
+		<a class="next button" href="step5.html">5. Renderers >> </a>
+	</div>	
+
+
+</div>
+</center>
+
+
+</body>
+</html>

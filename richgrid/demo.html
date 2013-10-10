@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+
+<center>
+
+
+<div style="width:850px;">
+
+	<h2>RichGrid Demonstration</h2>   
+    
+    <div id="tablemetadata"></div>
+	<div id="example-customer-grid"></div>   
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();
+	    example.finalgrid.render();		
+	});
+	</script>
+	
+	<div class="buttons">
+		<a class="next button" href="step1.html">Step by Step Setup >></a>
+	</div>	
+
+
+</div>
+</center>
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+body{
+    font-family: "Lucida Grande", "Lucida Sans Unicode",Verdana,Arial,sans-serif;
+}
+.richtable thead th{
+	font-size: 13px;
+}
+.richtable tbody td{
+	font-size: 12px;
+}
+.blue-box{
+	background: #D8E6F4;
+	padding: 8px;
+	margin-right: 1px;
+	border-top: 2px solid #A8BDCF;
+}
+
+.syntaxhighlighter {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 12px !important;
+}
+.syntaxhighlighter .toolbar {
+	display: none;
+}
+
+#tablemetadata {
+	font-size:12px;
+	text-align: left;
+	color: #888;
+}
+
+.exampleclass {
+	color: #666
+	font-weight: bold;
+}
+
+.apiusage {
+text-align: left;
+background-color: #EBF3DF;
+border: 0 none;
+color: #164673;
+display: block;
+font-family: "Monaco",monospace;
+margin-bottom: 0px;
+padding: 10px 15px;
+white-space: pre;
+}
+
+.apiresponse {
+border-left: solid 2px;
+border-right: solid 2px;
+border-bottom: solid 2px;
+border-color: #EBF3DF;
+margin-bottom: 20px;
+color: #444;
+}
+
+.richtable tr.expander-row div.pointer {
+	left: 75px !important;
+}
+
+.buttons {
+	padding-bottom:150px;
+}
+
+.buttons a.next{
+float:right;
+}
+.buttons a.previous{
+float:left;
+}
+.buttons a.button{
+	text-decoration: none;
+	border 1px solid #cdcdcd;
+	border: 2px solid #CDCDCD;
+	background-color: white;
+	padding: 10px;	
+	display: block;
+	width: 228px;
+	font-size: 13px;
+	margin-top:40px;
+}
+center h2 {
+	text-align: left;
+}
+center h4 {
+	padding-top:5px;
+	padding-bottom:0px;
+	margin-bottom:9px;
+}
+center h4,p {
+	text-align: left;
+}
+center p {
+	margin-top: 2px;
+	font-size: 14px;
+}

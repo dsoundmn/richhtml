@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+
+<body>
+
+<center>
+
+
+<div style="width:850px;">
+
+	<h2>Step 5: Renderers - Customize your data</h2>
+	
+	<div class="api-response">
+	<div class="apiusage">Customizing normal string columns. Merging first and last name on client side.</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+			{
+				text: "",
+				dataIndex: "address",
+				xtype: "expander",
+				renderer: function(text,row, el) {
+					var extraInfo = "<b>Address</b>: "+row.address+" "+row.postal_code+"<br/>";
+					extraInfo += "<b>E-mail</b>: "+row.email+"<br/>";
+					extraInfo += "<b>Phone</b>: "+row.phone+"<br/>";
+					return extraInfo;
+				}
+			},
+			{
+                text:     	"Full Name",
+                dataIndex:  "last_name",
+                align: 		"left",
+                renderer:   function(text,row,el) {
+                	el.addClass ='exampleclass';
+                	return row.last_name + ", " + row.first_name;	
+                },
+                sortable:   true         
+            }
+    </pre>
+    </div>
+    </div>    
+    
+	<h4>Explanation</h4>
+	<p>
+	<b>renderer:</b><br/>
+	Renderers allow you to customize every cell as you see fit.  If you prefer to style your data on the client end and just send back data via your JSON then renderers are the way to do it.<br/><br/>
+	
+	<b>Note</b>: The return value of the renderer will be the text displayed in the appropriate cell.
+	<br/><br/>
+	In the example above we customize the expander row address as well as first name.<br/>
+	Both render functions take the params (text, row, el).<br/><br/>
+	<b>text</b> - the data returned from the JSON matching the dataIndex (optional for expander renderer). <br/> 
+	<b>row</b> - the array of data for that specific row (i.e. row.email).<br/>
+	<b>el</b> - the element representation of the cell container.  Currently there are only two assignments you can give the element bounding the data in the cell.  Either addClass or removeClass.  You can just assign it to the class you want to perform the action on (i.e. el.addClass = 'exampleclass';)<br/><br/>
+	<b>Note</b>: In the example above Fullname still sends last_name back to the url action on reload (when sorting), as that is the value in the dataIndex.  If you want to sort by first name you would need to add first_name to the dataIndex.
+	</p>   
+    
+    <h4>Output</h4>
+	<div id="example-customer-grid"></div>   
+
+	<h4>Optional Delayed Renderer.  Preferred method when loading a lot of data into the data expander row.</h4>
+    <div class="api-response">
+	<div class="apiusage">Customizing delayed renderered expanders.</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+			// column definition of expander
+			{
+				text: "",
+				xtype: "expander",
+				renderOnExpand: true,
+				renderer: renderExpander
+			}
+			
+			// rowexpander function
+			function renderExpander(value,record,el){
+		    	$.ajax({
+				  url: 'code/actions/getCustomerAddress.php',
+				  dataType: 'json',
+				  async: false,
+				  data: {customer_id:record.customer_id},
+				  success: function(data) {	
+				  	 html = "<div style='float:left;'><img width='55px' height='55px' src='profile.jpg' /></div>";
+					 html += "<div style='margin-bottom:15px;padding-left:70px;margin-top: 10px;padding-top: 5px;'><b>Address</b>: "+data.address.address+" "+data.address.postal_code+"<br/>";
+					 html += "<b>E-mail</b>: "+data.address.email+"<br/>";
+					 html += "<b>Phone</b>: "+data.address.phone+"</div>";
+				  }
+				});			
+				return html;			  
+		    }  
+    </pre>
+    </div>
+    </div> 
+    
+    <h4>Explanation</h4>
+	<p>
+	<b>renderOnExpand</b><br/>
+	If you don't want to populate the content in the expander row on the initial loading of the grid but instead want to populate when you expand the grid.  Select true for the config option <b>renderOnExpand</b>.  The default is false.<br/><br/>
+	<b>Note</b>: When you set the renderOnExpand to true the dataIndex for the expander column definition is not required.  As the databinding will happen after the fact and you will be able to obtain the values you need via the record array.<br/><br/>
+	<b>Note</b>: You will most likely want to populate the data via an ajax call. Please ensure that you have set <b>async</b> to false.  Otherwise the renderer will return an empty string before the ajax call's success method is reached.
+	</p>
+    
+    <h4>Output</h4>
+	<div id="example-customer-grid2"></div>  
+
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();
+	    example.grid2.render();		
+	    example.grid3.render();	    
+	});
+	</script>
+	
+	<div class="buttons">
+		<a class="previous button" href="step4.html">&lt;&lt; 4. Load some data</a>
+		<a class="next button" href="step6.html">6. Finishing touches >> </a>
+	</div>	
+
+
+</div>
+</center>
+
+
+</body>
+</html>

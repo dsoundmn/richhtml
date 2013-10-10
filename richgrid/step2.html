@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+
+<body>
+
+<center>
+
+<div style="width:850px;">
+
+	<h2>Step 2: Create the JS object of the richgrid class</h2>
+	
+	<div class="api-response">
+	<div class="apiusage">Create our object after the page is ready.</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+	example = {}
+	$(document).ready(function() { 	
+		example.grid = new RichHTML.grid({
+			el: "example-customer-grid"
+		});
+		example.grid.render();
+	});
+    </pre>
+    </div>
+    </div>   
+    
+	<h4>Explanation</h4>
+	<p>
+	<b>el:</b><br/>
+	The RichHTML grid accepts config values when instantiating the object.  We will go over all of the available options as we step closer to the final grid.  The <b>el</b> config param tells the richgrid which div element to render, place, the grid into.<br/><br/>	
+	<b>render()</b><br/>	
+	To display the grid you need to call the object's <b>render()</b> method.  This call will load the grid, and performs all it's magic before rendering to the element id you specified with the el property.
+	<br/><br/>
+	
+	<br/>
+	</p>   
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();		
+	});
+	</script>
+	
+	<div class="buttons">
+		<a class="previous button" href="step1.html">&lt;&lt; 1. Load JS/CSS files</a>
+		<a class="next button" href="step3.html">3. Load some data >> </a>
+	</div>	
+
+
+</div>
+</center>
+
+
+</body>
+</html>

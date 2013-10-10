@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+<title>RichHTML Grid</title>
+<!-- required js libs for richgrid -->
+<script type="text/javascript" src="/requiredjs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/requiredjs/mustache.js"></script>
+<!-- richjs -->
+<script type="text/javascript" src="/richjs/rich.all-min.js"></script>
+<link rel="stylesheet" type="text/css" href="/richjs/css/rich.grid.css" />
+
+<!-- includes for template -->
+<script type="text/javascript" src="/requiredjs/shCore.js"></script>
+<script type="text/javascript" src="/requiredjs/shBrushJScript.js"></script>
+<link rel="stylesheet" type="text/css" href="/requiredjs/shCore.css" />
+<link rel="stylesheet" type="text/css" href="/requiredjs/shThemeDefault.css" />
+<!-- js file containing all implementation of richgrid for this example -->
+<script type="text/javascript" src="app.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+
+<body>
+
+<center>
+
+<div style="width:850px;">
+	
+	<h2>Step 3: Time to load some data</h2>
+	
+	<div class="api-response">
+	<div class="apiusage">Create our object after the page is ready</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+	example = {}
+	$(document).ready(function() { 
+	
+		example.grid = new RichHTML.grid({
+			el: "example-customer-grid",
+			url:'code/actions/getCustomers.php',
+			root: 'customers',
+			totalProperty : 'totalcount',
+			columns: [{
+				text:     	"First Name",
+                dataIndex:  "first_name"
+			},{
+				text:     	"Last Name",
+                dataIndex:  "last_name"
+			},{
+				text: 		"Created On",
+				dataIndex:	"create_date"
+			}]
+		});
+		example.grid.render();
+	});
+    </pre>
+    </div>
+    </div>   
+    
+	<h4>Explanation</h4>
+	<p>
+	<b>columns:</b><br/>
+	We will discuss more about columns in the next section.  But for now just know it is the collection of arrays of the data mapping between the returned json and what is to be displayed.  Here we are telling richgrid to map 3 data items in the customers array.  first_name,last_name,create_date using the dataIndex field.  Naming the columns with the string found in the text element.
+	<br/><br/>
+	<b>url:</b><br/>
+	This is the location of the script returning json values to populate the grid.  The url will be used upon both the render and future reload() calls.  Note: Your action will need to return json as it is the only supported format at this time.  (check below for example JSON return value)
+	<br/><br/>
+	<b>root:</b><br/>
+	The name or the element in your returned array which contains the records/rows of the items to populate your grid
+	<br><br/>
+	<b>totalProperty:</b><br/>
+	The total count of items you want to page through.  This is not the same as the total items returning as you could be returning just a small subset of the total number of items.  Paging option will not be available unless this config option is configured properly.
+	</p>   
+	
+    <h4>Output</h4>
+	<div id="example-customer-grid"></div>    	
+
+	<br/><br/>
+	<div class="api-response">
+	<div class="apiusage">Example JSON return value</div>
+	<div class="apiresponse">
+	<pre class="brush: js">
+{
+    "totalcount": 599,
+    "customers": [
+        {
+            "customer_id": "1",
+            "first_name": "MARY",
+            "last_name": "SMITH",
+            "email": "MARY.SMITH@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "1913 Hanoi Way",
+            "phone": "28303384290",
+            "postal_code": "35200"
+        },
+        {
+            "customer_id": "2",
+            "first_name": "PATRICIA",
+            "last_name": "JOHNSON",
+            "email": "PATRICIA.JOHNSON@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "1121 Loja Avenue",
+            "phone": "838635286649",
+            "postal_code": "17886"
+        },
+        {
+            "customer_id": "3",
+            "first_name": "LINDA",
+            "last_name": "WILLIAMS",
+            "email": "LINDA.WILLIAMS@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "692 Joliet Street",
+            "phone": "448477190408",
+            "postal_code": "83579"
+        },
+        {
+            "customer_id": "4",
+            "first_name": "BARBARA",
+            "last_name": "JONES",
+            "email": "BARBARA.JONES@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "1566 Inegl Manor",
+            "phone": "705814003527",
+            "postal_code": "53561"
+        },
+        {
+            "customer_id": "5",
+            "first_name": "ELIZABETH",
+            "last_name": "BROWN",
+            "email": "ELIZABETH.BROWN@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "53 Idfu Parkway",
+            "phone": "10655648674",
+            "postal_code": "42399"
+        },
+        {
+            "customer_id": "6",
+            "first_name": "JENNIFER",
+            "last_name": "DAVIS",
+            "email": "JENNIFER.DAVIS@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "1795 Santiago de Compostela Way",
+            "phone": "860452626434",
+            "postal_code": "18743"
+        },
+        {
+            "customer_id": "7",
+            "first_name": "MARIA",
+            "last_name": "MILLER",
+            "email": "MARIA.MILLER@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "900 Santiago de Compostela Parkway",
+            "phone": "716571220373",
+            "postal_code": "93896"
+        },
+        {
+            "customer_id": "8",
+            "first_name": "SUSAN",
+            "last_name": "WILSON",
+            "email": "SUSAN.WILSON@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "478 Joliet Way",
+            "phone": "657282285970",
+            "postal_code": "77948"
+        },
+        {
+            "customer_id": "9",
+            "first_name": "MARGARET",
+            "last_name": "MOORE",
+            "email": "MARGARET.MOORE@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "613 Korolev Drive",
+            "phone": "380657522649",
+            "postal_code": "45844"
+        },
+        {
+            "customer_id": "10",
+            "first_name": "DOROTHY",
+            "last_name": "TAYLOR",
+            "email": "DOROTHY.TAYLOR@sakilacustomer.org",
+            "create_date": "2006-02-14 22:04:36",
+            "address": "1531 Sal Drive",
+            "phone": "648856936185",
+            "postal_code": "53628"
+        }
+    ]
+}
+    </pre>
+    </div>
+    </div>   
+
+
+	<script type="text/javascript">
+	$(document).ready(function() { 
+		SyntaxHighlighter.all();
+	    example.grid1.render();		
+	});
+	</script>
+	
+	<div class="buttons">
+		<a class="previous button" href="step1.html">&lt;&lt; 2. Load JS/CSS files</a>
+		<a class="next button" href="step4.html">4. Column options >> </a>
+	</div>	
+
+
+</div>
+</center>
+
+
+</body>
+</html>
